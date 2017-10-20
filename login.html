@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login to Hotspot SMK Nurul Jadid</title>
+    <style>
+	*{
+    padding: 0;
+    margin: 0;
+}
+.main{
+    font-family: sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana;
+	background-size: 400% 400%;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.main-space{
+    padding: 10% 12% 6% 12%;
+}
+.space{
+    padding: 3%;
+}
+.login-panel{
+    position: relative;
+    max-width: 400px;
+    min-height: 100px;
+    margin: 8% auto 0 auto;
+    background-color: white;
+    overflow: hidden;
+    border-top: 2px solid #3030c3;
+    box-shadow: 0px 0px 12px -5px black;
+}
+.login-panel .head{
+    box-shadow: inset 0px 12px 17px -17px black;
+}
+.login-panel .head a{
+    position: absolute;
+    right: 22px;
+    text-decoration: none;
+    top: 15px;
+    font-size: 14px;
+}
+.login-panel .head a:hover{
+    text-decoration: underline;
+}
+.login-panel .head .title{
+    background-color: #6363FF;
+    color: white;
+    display: inline-block;
+    padding: 10px 48px 12px 48px;
+    margin-left: -20px;
+    transform: skewX(-35deg);
+    box-shadow: 1px 0px 17px -5px #000;
+}
+.login-panel .title h4{
+    transform: skewX(35deg);
+    font-size: 18px;
+    font-weight: normal;
+}
+.login-panel .inner input{
+    width: 84%;
+    padding: 6.5% 8%;
+    outline: none;
+    border: none;
+    background-color: #EEEEEE;
+    font-size: 16px;
+}
+.login-panel .inner button{
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 6%;
+    background-color: #9595ff;
+    color: white;
+    font-size: 16px;
+}
+
+	</style>
+</head>
+<body>
+$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+	
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	</script>
+    <div class="main">
+        <div class="login-panel">
+            <div class="head">
+                <div class="title">
+                    <h4>Login Hotspot</h4>
+                </div>
+                <!--a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">Free Login</a-->
+            </div> 
+            <div class="inner">
+                <form name="login" action="$(link-login-only)" method="post"
+					    $(if chap-id) onSubmit="return doLogin()" $(endif)>
+                <div class="main-space">
+                    <div class="space">
+                        <input name="username" type="text" placeholder="Username" value="$(username)">
+                    </div>
+                    <div class="space">
+                        <input name="password" type="password" placeholder="Password">
+                    </div>
+                    <br/>
+                    <div class="space">
+                        <button type="submit">LOGIN</button>
+                    </div>
+                </div>
+				$(if error)
+                <div class="space" style="text-align: center;color: red;font-size: 14px;">
+                    <span>$(error)</span>
+                </div>
+				$(endif)
+                </form>
+            </div>
+        </div>
+    </div>
+	<script src="/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="/background.cycle.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".main").backgroundCycle({
+                    imageUrls: [
+                        'img/slide1.jpg',
+						'img/slide2.jpg',
+						'img/slide3.jpg',
+						'img/slide4.jpg'
+                    ],
+                    fadeSpeed: 2000,
+                    duration: 5000,
+                    backgroundSize: SCALING_MODE_COVER
+                });
+            });
+        </script>
+$(endif)
+</body>
+</html>
